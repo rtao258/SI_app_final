@@ -1,0 +1,11 @@
+<div class="jumbotron">
+  <h2>Welcome <%=@user%>! Here is your dashboard</h2>
+  <p>With this, you will be able to view disk and file usage as well as space left.</p>
+    <a href="<%= url("/find_file") %>" class="btn btn-info" style="color: #F4F4F4">
+        <i class="fas fa-users"></i> Find Different User 
+    </a>
+</div>
+
+<%== erb :usage %>
+
+<%== erb :jobs %>

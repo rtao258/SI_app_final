@@ -1,0 +1,26 @@
+<form action="<%= url("/files") %>" method="GET" class="mb-3">
+  <div class="form-group">
+    <label for="inputFile" style="color:#343434">File Path or Directory</label>
+    <input name = "file" type="text" class="form-control" id="inputFile">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<form action="<%= url("/search_user") %>" method="GET">
+  <div class="form-group">
+    <label for="inputUser" style="color:#343434">Username</label>
+    <input name="user" type="text" class="form-control" id="inputUser" >
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- <form action="<%= url("/files") %>" method="GET" class="mb-3">
+ <div class="form-group">
+    <label for="inputFile" style="color:#343434">File Path or Directory</label>
+    <input name = "file" type="text" class="form-control" id="inputFile">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Another label</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+  </div>
+</form>

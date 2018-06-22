@@ -1,0 +1,10 @@
+<h1 id="title">All Jobs</h1>
+
+<% @output.each do |job| %>
+    <div class="job">
+        <h2><%= job.job_name %></h2>
+        <div class="job-details">
+            <p><%= job.job_owner %></p>
+        </div>
+    </div>
+<% end %>

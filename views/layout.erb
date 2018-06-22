@@ -1,0 +1,155 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <style>
+    #navbarSupportedContent
+    {
+        padding: 0 4rem 0 4rem;
+    }
+    
+    .job
+    {
+        margin: 1rem;
+        border: solid 2px gray;
+        border-radius: 1rem;
+    }
+    
+    .job-running
+    {
+        cursor: pointer;
+    }
+    
+    .btn-primary {
+        background-color: #3C948B;
+        border-color: #3C948B;
+    }
+
+    .form-control {
+        background-color: #F4F4F4;
+        border-color: #921233;
+    }
+    
+    .btn-primary:hover {
+        background-color: #49BDB1;
+        border-color: #49BDB1;
+    }
+    
+    .jumbotron
+    {
+        background-color:#D8D8D8
+    }
+    
+    div[role=main]
+    {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    
+    body, footer
+    {
+        background-color: #FAFAFA;
+    }
+    
+    h1
+    {
+        margin-top: 2rem;
+        color: #343434;
+    }
+    
+    p 
+    {
+        color: #343434;
+    }
+    
+    input[type=text]
+    {
+        
+    }
+    
+    table 
+    {
+        font-size: 0.8rem;
+        color: #343434;
+        background-color: #F4F4F4; 
+    }
+    
+    th {
+        color: #921233;
+    }
+    
+    header
+    {
+        top: 0;
+        z-index: 1;
+    }
+    
+    footer
+    {
+        bottom: 0;
+        padding: 2rem;
+    }
+</style>
+
+  <script>
+    $(document).ready(function(){
+        $(".job-details").hide();
+        $(".job").click(function(){
+            $(this).find(".job-details").toggle();
+        });
+    });
+</script>
+</head>
+<body>
+
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top">
+    <a href="/" class="navbar-brand"><%= ENV["ONDEMAND_TITLE"] %></a>
+    <a href="<%= url("/") %>" class="navbar-brand"><%= title %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% @navlinks.each do |link| %>
+          <li class="nav-item <%= link.active(@path) %>">
+            <a href="<%= url(link.path) %>" class="nav-link">
+                <i class="fas fa-<%= link.icon %>"></i> <%= link.text %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- individual .erb files -->
+<div class="container" role="main">
+    <h1 class="display-4 py-3 mb-3 border-bottom" id="pagetitle"><%= @pagetitle %></h1>
+    <% if @error%>
+        <div class="alert alert-danger" role="alert">
+            <%= @error %>
+        </div>
+    <% end %>
+    <%== yield %>
+</div>
+
+<footer class="footer font-small fixed-bottom stylish-color-dark pt-4 mt-4 border-top">
+  <div class="container">
+    <span class="text-muted">by the OnDemand group @ OSC Summer Institute 2018</span>  
+  </div>
+</footer>
+
+</body>
+</html>

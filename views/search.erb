@@ -1,0 +1,7 @@
+<form target="<%= url("/search_user") %>" method="GET">
+  <div class="form-group">
+    <label for="InputUsername">Username</label>
+    <input name="user" type="text" class="form-control" id="InputUsername" aria-describedby="usernameHelp" placeholder="e.g. <%= ENV['USER'] %>">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

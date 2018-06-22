@@ -1,0 +1,35 @@
+<div class="d-md-flex flex-wrap">
+    <% @output.each do |job| %>
+        <div class="job card p-md-1 col-md-5 align-self-start <%= "job-running" if job.running %>">
+            <div class="card-body">
+                <% if job.running %><span class="fas fa-angle-down fa-lg float-right align-top"></span><% end %>
+                <h4 class="card-title">
+                    <%= job.job_name %>
+                    <!-- display if job is running -->
+                    <% if job.running %>
+                      <span class="badge badge-success">Running</span>
+                    <% else %>
+                      <span class="badge badge-danger">Not Running</span>
+                    <% end %>
+                </h4>
+                <h5 class="card-subtitle mb-2 text-muted">#<%= job.job_ID[0] %></h5>
+                <p class="card-text"></p>
+                <div class="job-details">
+                    <% if job.running %>
+                        <h6>Walltime</h6>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: <%= job.walltime_percent %>%;" aria-valuenow="<%= job.walltime_percent %>" aria-valuemin="0" aria-valuemax="100">
+                                <%= job.walltime %>
+                            </div>
+                        </div>
+                        <h6>Nodes</h6>
+                        <p class="card-text"><%= job.res_nodes %></p>
+                        <h6>Memory</h6>
+                        <p class="card-text">Vmem: <%= job.vmem %></p>
+                        <p class="card-text">Mem: <%= job.mem %></p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
